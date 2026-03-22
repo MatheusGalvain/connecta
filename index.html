@@ -6,20 +6,21 @@
 <title>ConnectaFy</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700;800;900&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
 :root {
-  --bg: #0a0a0a;
-  --white: #f5f5f0;
-  --green: #b8ff57;
-  --muted: #5a5a5a;
-  --surface: #111111;
-  --border: #1e1e1e;
+  --bg: #080808;
+  --white: #f0ede6;
+  --gold: #c9a84c;
+  --gold-light: #e8c96a;
+  --gold-dim: #7a6230;
+  --muted: #555550;
+  --border: #1c1c1a;
+  --surface: #0f0f0d;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-
 body {
   background: var(--bg);
   color: var(--white);
@@ -28,210 +29,140 @@ body {
   overflow-x: hidden;
 }
 
+/* ─── NAV ─── */
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 0 48px;
-  height: 64px;
+  padding: 0 48px; height: 64px;
   border-bottom: 1px solid var(--border);
-  background: rgba(10,10,10,0.92);
-  backdrop-filter: blur(16px);
+  background: rgba(8,8,8,0.94);
+  backdrop-filter: blur(20px);
 }
-.logo {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 900;
-  font-size: 1.5rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--white);
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
   text-decoration: none;
 }
-.logo em { font-style: normal; color: var(--green); }
+.nav-logo svg { height: 32px; width: auto; }
 .nav-right { display: flex; align-items: center; gap: 40px; }
 .nav-links { display: flex; gap: 36px; list-style: none; }
 .nav-links a {
   font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 600;
-  font-size: 0.85rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--muted);
-  text-decoration: none;
-  transition: color 0.2s;
+  font-weight: 600; font-size: 0.82rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s;
 }
 .nav-links a:hover { color: var(--white); }
 .btn-nav {
   font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 700;
-  font-size: 0.8rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--bg);
-  background: var(--green);
-  padding: 10px 24px;
-  text-decoration: none;
-  transition: opacity 0.2s, transform 0.15s;
+  font-weight: 800; font-size: 0.78rem; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--bg); background: var(--gold);
+  padding: 10px 26px; text-decoration: none; transition: opacity 0.2s, transform 0.15s;
 }
 .btn-nav:hover { opacity: 0.85; transform: translateY(-1px); }
 
+/* ─── HERO ─── */
 .hero {
   min-height: 780px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: grid; grid-template-columns: 1fr 1fr;
   border-bottom: 1px solid var(--border);
 }
 .hero-left {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  display: flex; flex-direction: column; justify-content: flex-end;
   padding: 120px 60px 72px 48px;
   border-right: 1px solid var(--border);
 }
 .hero-tag {
   font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 600;
-  font-size: 0.75rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--green);
-  margin-bottom: 32px;
-  display: flex; align-items: center; gap: 10px;
+  font-weight: 600; font-size: 0.72rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: 32px; display: flex; align-items: center; gap: 12px;
 }
-.hero-tag::before { content: ''; display: block; width: 24px; height: 1px; background: var(--green); }
+.hero-tag::before { content: ''; display: block; width: 28px; height: 1px; background: var(--gold); }
 .hero h1 {
   font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 900;
-  font-size: clamp(5rem, 9vw, 9rem);
-  line-height: 0.9;
-  letter-spacing: -0.01em;
-  text-transform: uppercase;
+  font-weight: 900; font-size: clamp(5rem, 9vw, 9rem);
+  line-height: 0.9; letter-spacing: -0.01em; text-transform: uppercase;
 }
-.hero h1 .outline {
-  -webkit-text-stroke: 1.5px var(--white);
-  color: transparent;
-}
-.hero h1 .green { color: var(--green); }
+.hero h1 .outline { -webkit-text-stroke: 1.5px var(--white); color: transparent; }
+.hero h1 .gold { color: var(--gold); }
 .hero-desc {
-  margin-top: 40px;
-  font-size: 1rem;
-  font-weight: 300;
-  color: var(--muted);
-  line-height: 1.8;
-  max-width: 380px;
+  margin-top: 40px; font-size: 1rem; font-weight: 300;
+  color: var(--muted); line-height: 1.8; max-width: 380px;
 }
 .hero-actions { margin-top: 48px; display: flex; gap: 16px; align-items: center; }
 .btn-primary {
   font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 800;
-  font-size: 0.9rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--bg);
-  background: var(--green);
-  padding: 16px 40px;
-  text-decoration: none;
-  transition: opacity 0.2s, transform 0.15s;
-  display: inline-block;
+  font-weight: 800; font-size: 0.88rem; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--bg); background: var(--gold);
+  padding: 16px 40px; text-decoration: none;
+  transition: opacity 0.2s, transform 0.15s; display: inline-block;
 }
 .btn-primary:hover { opacity: 0.85; transform: translateY(-2px); }
 .btn-ghost {
   font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 600;
-  font-size: 0.85rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--muted);
-  text-decoration: none;
-  display: flex; align-items: center; gap: 8px;
-  transition: color 0.2s;
+  font-weight: 600; font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--muted); text-decoration: none;
+  display: flex; align-items: center; gap: 8px; transition: color 0.2s;
 }
 .btn-ghost:hover { color: var(--white); }
 .btn-ghost::after { content: '→'; transition: transform 0.2s; }
 .btn-ghost:hover::after { transform: translateX(4px); }
 
 .hero-right {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 120px 48px 72px 60px;
-  position: relative;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 120px 48px 72px 60px; position: relative;
 }
 .hero-number {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 900;
-  font-size: clamp(8rem, 14vw, 14rem);
-  line-height: 1;
-  -webkit-text-stroke: 1px #2a2a2a;
-  color: transparent;
-  position: absolute;
-  top: 80px; right: 24px;
-  pointer-events: none;
-  user-select: none;
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 900;
+  font-size: clamp(8rem, 14vw, 14rem); line-height: 1;
+  -webkit-text-stroke: 1px #222218; color: transparent;
+  position: absolute; top: 80px; right: 24px;
+  pointer-events: none; user-select: none;
 }
 .hero-stats { display: flex; flex-direction: column; gap: 32px; }
 .stat-item { border-top: 1px solid var(--border); padding-top: 24px; }
 .stat-num {
   font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 900;
-  font-size: 3.5rem;
-  line-height: 1;
-  color: var(--white);
+  font-weight: 900; font-size: 3.5rem; line-height: 1; color: var(--white);
 }
-.stat-num span { color: var(--green); }
-.stat-label { font-size: 0.85rem; font-weight: 300; color: var(--muted); margin-top: 6px; letter-spacing: 0.04em; }
+.stat-num span { color: var(--gold); }
+.stat-label { font-size: 0.85rem; font-weight: 300; color: var(--muted); margin-top: 6px; }
 
+/* ─── MARQUEE ─── */
 .marquee-wrap {
   border-bottom: 1px solid var(--border);
-  overflow: hidden;
-  padding: 18px 0;
-  background: var(--green);
+  overflow: hidden; padding: 16px 0;
+  background: var(--gold);
 }
 .marquee-track {
-  display: flex;
-  gap: 0;
-  animation: marquee 18s linear infinite;
-  white-space: nowrap;
+  display: flex; animation: marquee 20s linear infinite; white-space: nowrap;
 }
 .marquee-track span {
   font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 800;
-  font-size: 1rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--bg);
-  padding: 0 48px;
+  font-weight: 800; font-size: 0.9rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--bg); padding: 0 48px;
 }
-.marquee-track span.dot { padding: 0; font-size: 0.5rem; opacity: 0.4; display: inline-flex; align-items: center; }
+.marquee-track span.dot { padding: 0; font-size: 0.45rem; opacity: 0.4; display: inline-flex; align-items: center; }
 @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
+/* ─── SERVICES ─── */
 .services {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: grid; grid-template-columns: repeat(3, 1fr);
   border-bottom: 1px solid var(--border);
 }
 .service-card {
-  padding: 72px 48px;
-  border-right: 1px solid var(--border);
+  padding: 72px 48px; border-right: 1px solid var(--border);
   transition: background 0.3s;
 }
 .service-card:last-child { border-right: none; }
-.service-card:hover { background: #0f0f0f; }
+.service-card:hover { background: #0d0d0b; }
 .service-num {
   font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 600;
-  font-size: 0.75rem;
-  letter-spacing: 0.18em;
-  color: var(--green);
-  margin-bottom: 48px;
+  font-weight: 600; font-size: 0.72rem; letter-spacing: 0.2em; color: var(--gold); margin-bottom: 48px;
 }
 .service-title {
   font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 900;
-  font-size: clamp(2.5rem, 4vw, 3.8rem);
-  line-height: 0.92;
-  text-transform: uppercase;
-  letter-spacing: -0.01em;
-  margin-bottom: 28px;
+  font-weight: 900; font-size: clamp(2.5rem, 4vw, 3.8rem);
+  line-height: 0.92; text-transform: uppercase; letter-spacing: -0.01em; margin-bottom: 28px;
 }
 .service-desc { font-size: 0.95rem; font-weight: 300; color: var(--muted); line-height: 1.8; margin-bottom: 40px; }
 .service-features { list-style: none; display: flex; flex-direction: column; gap: 12px; }
@@ -240,103 +171,184 @@ nav {
   display: flex; align-items: center; gap: 10px; transition: color 0.2s;
 }
 .service-card:hover .service-features li { color: #888; }
-.service-features li::before { content: '—'; color: var(--green); font-size: 0.8rem; }
+.service-features li::before { content: '—'; color: var(--gold); font-size: 0.8rem; }
 
+/* ─── PRICING ─── */
 .pricing-section { border-bottom: 1px solid var(--border); }
 .pricing-header {
   display: grid; grid-template-columns: 1fr 2fr;
   border-bottom: 1px solid var(--border);
 }
 .pricing-header-left { padding: 64px 48px; border-right: 1px solid var(--border); }
-.pricing-header-right { padding: 64px 48px; display: flex; align-items: flex-end; }
-
+.pricing-header-right { padding: 64px 48px; display: flex; align-items: center; }
 .section-eyebrow {
   font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 600;
-  font-size: 0.75rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--green);
-  margin-bottom: 20px;
-  display: flex; align-items: center; gap: 10px;
-}
-.section-eyebrow::before { content: ''; display: block; width: 24px; height: 1px; background: var(--green); }
-.section-title-big {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 900;
-  font-size: clamp(3.5rem, 6vw, 6rem);
-  line-height: 0.88;
-  text-transform: uppercase;
-  letter-spacing: -0.01em;
-}
-.pricing-note { font-size: 0.95rem; font-weight: 300; color: var(--muted); line-height: 1.8; max-width: 420px; }
-
-.pricing-group-label {
-  padding: 20px 48px;
-  border-bottom: 1px solid var(--border);
-  background: #0d0d0d;
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 700;
-  font-size: 0.75rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--muted);
+  font-weight: 600; font-size: 0.72rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 20px;
   display: flex; align-items: center; gap: 12px;
 }
-.pricing-group-label em { color: var(--green); font-style: normal; }
-.pricing-row {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  border-bottom: 1px solid var(--border);
+.section-eyebrow::before { content: ''; display: block; width: 28px; height: 1px; background: var(--gold); }
+.section-title-big {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900; font-size: clamp(3.5rem, 6vw, 6rem);
+  line-height: 0.88; text-transform: uppercase; letter-spacing: -0.01em;
 }
-.price-card {
-  padding: 48px;
+.pricing-intro { max-width: 540px; }
+.pricing-intro p { font-size: 0.95rem; font-weight: 300; color: var(--muted); line-height: 1.8; margin-bottom: 16px; }
+.pricing-intro p strong { color: var(--white); font-weight: 500; }
+
+/* SETUP BANNER */
+.setup-banner {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 28px 48px;
+  background: #0d0d0b;
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap; gap: 20px;
+}
+.setup-left { display: flex; align-items: center; gap: 24px; }
+.setup-tag {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800; font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--bg); background: var(--gold); padding: 4px 12px;
+}
+.setup-text h4 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900; font-size: 1.3rem; text-transform: uppercase; line-height: 1;
+}
+.setup-text p { font-size: 0.85rem; font-weight: 300; color: var(--muted); margin-top: 4px; }
+.setup-price {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900; font-size: 2rem; color: var(--gold); line-height: 1;
+}
+.setup-price span { font-size: 1rem; font-weight: 400; color: var(--muted); margin-left: 6px; }
+
+/* PLANS GRID */
+.plans-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+}
+.plan-card {
+  padding: 52px 48px;
   border-right: 1px solid var(--border);
   display: flex; flex-direction: column;
   transition: background 0.3s;
+  position: relative;
 }
-.price-card:last-child { border-right: none; }
-.price-card.hot { background: #0e1200; }
-.price-card.hot:hover { background: #101400; }
-.price-card:not(.hot):hover { background: #0d0d0d; }
-.price-plan {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 700; font-size: 0.75rem; letter-spacing: 0.18em;
-  text-transform: uppercase; color: var(--muted); margin-bottom: 16px;
+.plan-card:last-child { border-right: none; }
+.plan-card.featured {
+  background: #0d0c09;
 }
-.hot .price-plan { color: var(--green); }
-.price-name {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 900; font-size: 2.6rem; text-transform: uppercase; line-height: 1; margin-bottom: 8px;
-}
-.price-desc { font-size: 0.85rem; font-weight: 300; color: var(--muted); line-height: 1.6; margin-bottom: 32px; }
-.price-value {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 900; font-size: 3.8rem; line-height: 1; letter-spacing: -0.02em;
-}
-.price-value sub { font-size: 1.4rem; vertical-align: super; font-weight: 700; margin-right: 2px; }
-.price-period { font-size: 0.8rem; font-weight: 300; color: var(--muted); margin-top: 4px; margin-bottom: 32px; }
-.price-features { list-style: none; flex: 1; display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; }
-.price-features li {
-  font-size: 0.88rem; font-weight: 300; color: var(--muted);
-  display: flex; align-items: flex-start; gap: 8px; line-height: 1.4;
-}
-.price-features li .ck { color: var(--green); font-size: 0.8rem; flex-shrink: 0; margin-top: 2px; }
-.price-features li.off { opacity: 0.35; }
-.btn-price {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 800; font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase;
-  padding: 14px 32px; text-decoration: none; text-align: center; display: block; transition: all 0.2s;
-}
-.btn-price-green { background: var(--green); color: var(--bg); }
-.btn-price-green:hover { opacity: 0.85; }
-.btn-price-outline { background: transparent; color: var(--white); border: 1px solid var(--border); }
-.btn-price-outline:hover { border-color: #444; background: #111; }
-.hot-badge {
-  display: inline-block; background: var(--green); color: var(--bg);
-  font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 0.65rem;
-  letter-spacing: 0.14em; text-transform: uppercase; padding: 3px 10px; margin-bottom: 12px; align-self: flex-start;
+.plan-card:not(.featured):hover { background: #0d0d0b; }
+.plan-card.featured:hover { background: #101009; }
+
+/* gold top line on featured */
+.plan-card.featured::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
 }
 
+.plan-badge {
+  display: inline-block; align-self: flex-start;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800; font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--bg); background: var(--gold); padding: 3px 10px; margin-bottom: 20px;
+}
+.plan-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900; font-size: 2.8rem; text-transform: uppercase; line-height: 1; margin-bottom: 6px;
+}
+.plan-tagline {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--gold-dim); margin-bottom: 28px;
+}
+.plan-price-row {
+  display: flex; align-items: flex-end; gap: 8px; margin-bottom: 4px;
+}
+.plan-price-label {
+  font-size: 0.75rem; font-weight: 400; color: var(--muted); margin-bottom: 4px;
+  font-family: 'Barlow Condensed', sans-serif; letter-spacing: 0.08em; text-transform: uppercase;
+}
+.plan-price {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900; font-size: 4rem; line-height: 1; letter-spacing: -0.02em;
+}
+.plan-price sub { font-size: 1.4rem; vertical-align: super; font-weight: 700; margin-right: 2px; }
+.plan-price-range {
+  font-size: 0.8rem; font-weight: 300; color: var(--muted); margin-bottom: 4px; padding-bottom: 28px;
+  border-bottom: 1px solid var(--border);
+}
+.plan-setup-line {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 0; border-bottom: 1px solid var(--border); margin-bottom: 28px;
+}
+.plan-setup-line span:first-child { font-size: 0.82rem; font-weight: 300; color: var(--muted); }
+.plan-setup-line span:last-child {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 0.9rem; color: var(--white);
+}
+.plan-features { list-style: none; flex: 1; display: flex; flex-direction: column; gap: 12px; margin-bottom: 36px; }
+.plan-features li {
+  font-size: 0.88rem; font-weight: 300; color: var(--muted);
+  display: flex; align-items: flex-start; gap: 10px; line-height: 1.5;
+}
+.plan-features li .ck { color: var(--gold); font-size: 0.75rem; flex-shrink: 0; margin-top: 3px; }
+.plan-features li.off { opacity: 0.3; }
+.btn-plan {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800; font-size: 0.85rem; letter-spacing: 0.14em; text-transform: uppercase;
+  padding: 15px 32px; text-decoration: none; text-align: center; display: block; transition: all 0.2s;
+}
+.btn-plan-gold { background: var(--gold); color: var(--bg); }
+.btn-plan-gold:hover { opacity: 0.85; }
+.btn-plan-outline { background: transparent; color: var(--white); border: 1px solid var(--border); }
+.btn-plan-outline:hover { border-color: #444; background: #111; }
+
+/* RESULT ROW */
+.result-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 28px 48px;
+  background: #060604;
+  border-top: 1px solid var(--border);
+  flex-wrap: wrap; gap: 20px;
+}
+.result-tag {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800; font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--gold); border: 1px solid var(--gold-dim); padding: 3px 10px;
+}
+.result-text { font-size: 0.9rem; font-weight: 300; color: var(--muted); max-width: 480px; line-height: 1.6; }
+.result-text strong { color: var(--white); font-weight: 500; }
+.result-values {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 1rem; color: var(--gold);
+  letter-spacing: 0.06em;
+}
+
+/* VISION BOX */
+.vision-box {
+  padding: 52px 48px;
+  background: #0a0a08;
+  border-top: 1px solid var(--border);
+  display: flex; align-items: center; gap: 80px; flex-wrap: wrap;
+}
+.vision-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600; font-size: 0.72rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 12px;
+  display: flex; align-items: center; gap: 12px;
+}
+.vision-label::before { content: ''; display: block; width: 28px; height: 1px; background: var(--gold); }
+.vision-stat {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900; font-size: 3.5rem; line-height: 1; color: var(--white);
+}
+.vision-stat span { color: var(--gold); }
+.vision-sub { font-size: 0.85rem; font-weight: 300; color: var(--muted); margin-top: 6px; }
+.vision-divider { width: 1px; height: 80px; background: var(--border); }
+.vision-text { font-size: 0.95rem; font-weight: 300; color: var(--muted); line-height: 1.8; max-width: 420px; }
+.vision-text strong { color: var(--white); font-weight: 500; }
+
+/* ─── PROCESS ─── */
 .process-section { border-bottom: 1px solid var(--border); }
 .process-header { display: grid; grid-template-columns: 1fr 2fr; border-bottom: 1px solid var(--border); }
 .process-header-left { padding: 64px 48px; border-right: 1px solid var(--border); }
@@ -347,7 +359,7 @@ nav {
 .step-block:last-child { border-right: none; }
 .step-n {
   font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 5rem; line-height: 1;
-  -webkit-text-stroke: 1px #2a2a2a; color: transparent; margin-bottom: 24px;
+  -webkit-text-stroke: 1px #282820; color: transparent; margin-bottom: 24px;
 }
 .step-name {
   font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.8rem;
@@ -355,9 +367,9 @@ nav {
 }
 .step-desc { font-size: 0.88rem; font-weight: 300; color: var(--muted); line-height: 1.7; }
 
+/* ─── CTA ─── */
 .cta-section {
   display: grid; grid-template-columns: 1fr 1fr;
-  min-height: 480px;
   border-bottom: 1px solid var(--border);
 }
 .cta-left {
@@ -369,16 +381,18 @@ nav {
   font-size: clamp(4rem, 7vw, 7rem); line-height: 0.88; text-transform: uppercase;
   letter-spacing: -0.01em; margin-bottom: 40px;
 }
-.cta-left h2 .green { color: var(--green); }
+.cta-left h2 .gold { color: var(--gold); }
 .cta-left p { font-size: 1rem; font-weight: 300; color: var(--muted); line-height: 1.8; max-width: 380px; margin-bottom: 48px; }
 .cta-right {
   display: flex; flex-direction: column; justify-content: flex-end; align-items: flex-start;
-  padding: 80px 48px; background: #0d0d0d;
+  padding: 80px 48px; background: #0a0a08;
 }
 .cta-right-eyebrow {
-  font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 0.75rem;
-  letter-spacing: 0.18em; text-transform: uppercase; color: var(--green); margin-bottom: 24px;
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 0.72rem;
+  letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 24px;
+  display: flex; align-items: center; gap: 12px;
 }
+.cta-right-eyebrow::before { content: ''; display: block; width: 28px; height: 1px; background: var(--gold); }
 .cta-number {
   font-family: 'Barlow Condensed', sans-serif; font-weight: 900;
   font-size: clamp(3rem, 5vw, 5rem); line-height: 1; text-transform: uppercase; margin-bottom: 12px;
@@ -389,17 +403,12 @@ nav {
 }
 .cta-wa-link:hover { color: var(--white); }
 
-footer {
-  display: grid; grid-template-columns: 1fr 1fr 1fr;
-  border-top: 1px solid var(--border);
-}
+/* ─── FOOTER ─── */
+footer { display: grid; grid-template-columns: 1fr 1fr 1fr; border-top: 1px solid var(--border); }
 .foot-col { padding: 48px; border-right: 1px solid var(--border); }
 .foot-col:last-child { border-right: none; }
-.foot-logo {
-  font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.8rem;
-  text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 16px;
-}
-.foot-logo em { font-style: normal; color: var(--green); }
+.foot-logo-wrap { margin-bottom: 16px; }
+.foot-logo-wrap svg { height: 28px; width: auto; }
 .foot-tagline { font-size: 0.85rem; font-weight: 300; color: var(--muted); line-height: 1.7; }
 .foot-links { list-style: none; display: flex; flex-direction: column; gap: 12px; }
 .foot-links a {
@@ -409,16 +418,18 @@ footer {
 .foot-links a:hover { color: var(--white); }
 .foot-copy { font-size: 0.78rem; font-weight: 300; color: var(--muted); margin-top: 24px; }
 
+/* ─── WA FLOAT ─── */
 .wa-btn {
   position: fixed; bottom: 32px; right: 32px; z-index: 200;
   background: #25D366; color: #fff; width: 56px; height: 56px;
   display: flex; align-items: center; justify-content: center;
-  text-decoration: none; box-shadow: 0 4px 24px rgba(37,211,102,0.35);
+  text-decoration: none; box-shadow: 0 4px 24px rgba(37,211,102,0.3);
   transition: transform 0.2s, box-shadow 0.2s;
 }
-.wa-btn:hover { transform: scale(1.08); box-shadow: 0 6px 32px rgba(37,211,102,0.5); }
+.wa-btn:hover { transform: scale(1.08); box-shadow: 0 6px 32px rgba(37,211,102,0.45); }
 .wa-btn svg { width: 28px; height: 28px; fill: #fff; }
 
+/* ─── RESPONSIVE ─── */
 @media (max-width: 960px) {
   nav { padding: 0 24px; }
   .nav-links { display: none; }
@@ -430,8 +441,11 @@ footer {
   .service-card { border-right: none; }
   .pricing-header { grid-template-columns: 1fr; }
   .pricing-header-left { border-right: none; border-bottom: 1px solid var(--border); }
-  .pricing-row { grid-template-columns: 1fr; }
-  .price-card { border-right: none; }
+  .plans-grid { grid-template-columns: 1fr; }
+  .plan-card { border-right: none; }
+  .setup-banner, .result-row { padding: 24px; }
+  .vision-box { padding: 40px 24px; gap: 32px; }
+  .vision-divider { display: none; }
   .process-header { grid-template-columns: 1fr; }
   .process-header-left { border-right: none; border-bottom: 1px solid var(--border); }
   .process-steps { grid-template-columns: 1fr 1fr; }
@@ -444,18 +458,34 @@ footer {
   footer { grid-template-columns: 1fr; }
   .foot-col { border-right: none; border-bottom: 1px solid var(--border); }
   .pricing-header-right, .process-header-right { padding: 40px 24px; }
-  .service-card, .step-block, .price-card { padding: 48px 24px; }
+  .service-card, .step-block, .plan-card { padding: 48px 24px; }
 }
 </style>
 </head>
 <body>
 
-<a href="https://wa.me/5500000000000?text=Olá!%20Vim%20pelo%20site%20da%20ConnectaFy." target="_blank" class="wa-btn" title="WhatsApp">
-  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zm-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884zm8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+<!-- WA FLOAT -->
+<a href="https://wa.me/5500000000000?text=Olá!%20Vim%20pelo%20site%20da%20ConnectaFy." target="_blank" class="wa-btn">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zm-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884zm8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
+<!-- NAV -->
 <nav>
-  <a href="#" class="logo">Connecta<em>Fy</em></a>
+  <a href="#" class="nav-logo">
+    <!-- LOGO SVG -->
+    <svg viewBox="0 0 180 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- C mark -->
+      <path d="M8 18 C8 10 13 5 20 5 C25 5 29 8 31 12" stroke="#c9a84c" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <path d="M8 18 C8 26 13 31 20 31 C25 31 29 28 31 24" stroke="#c9a84c" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <!-- dot accent -->
+      <circle cx="31" cy="12" r="2" fill="#c9a84c"/>
+      <circle cx="31" cy="24" r="2" fill="#c9a84c"/>
+      <!-- CONNECTA text -->
+      <text x="42" y="25" font-family="'Barlow Condensed', sans-serif" font-weight="900" font-size="22" letter-spacing="1" fill="#f0ede6" text-anchor="start">CONNECTA</text>
+      <!-- FY accent -->
+      <text x="153" y="25" font-family="'Barlow Condensed', sans-serif" font-weight="900" font-size="22" letter-spacing="1" fill="#c9a84c" text-anchor="start">FY</text>
+    </svg>
+  </a>
   <div class="nav-right">
     <ul class="nav-links">
       <li><a href="#servicos">Serviços</a></li>
@@ -466,13 +496,14 @@ footer {
   </div>
 </nav>
 
+<!-- HERO -->
 <section class="hero">
   <div class="hero-left">
     <div class="hero-tag">Agência digital · Resultados reais</div>
     <h1>
       <span class="outline">Sua</span><br/>
       <span>empresa</span><br/>
-      <span class="green">online</span>
+      <span class="gold">online</span>
     </h1>
     <p class="hero-desc">Tráfego pago que converte, agentes de IA que vendem por você, e sites que impressionam. Tudo que seu negócio precisa para dominar o digital.</p>
     <div class="hero-actions">
@@ -499,6 +530,7 @@ footer {
   </div>
 </section>
 
+<!-- MARQUEE -->
 <div class="marquee-wrap">
   <div class="marquee-track">
     <span>Tráfego Pago</span><span class="dot">●</span>
@@ -518,6 +550,7 @@ footer {
   </div>
 </div>
 
+<!-- SERVICES -->
 <section class="services" id="servicos">
   <div class="service-card">
     <div class="service-num">01 / Serviço</div>
@@ -534,7 +567,7 @@ footer {
   <div class="service-card">
     <div class="service-num">02 / Serviço</div>
     <h3 class="service-title">Agente<br/>de IA</h3>
-    <p class="service-desc">Atendimento inteligente 24h que qualifica leads, responde dúvidas e fecha vendas enquanto você descansa. Sua empresa nunca para.</p>
+    <p class="service-desc">Atendimento inteligente 24h que qualifica leads, responde dúvidas e fecha vendas enquanto você descansa.</p>
     <ul class="service-features">
       <li>Atendimento 24/7 no WhatsApp</li>
       <li>Qualificação automática de leads</li>
@@ -546,7 +579,7 @@ footer {
   <div class="service-card">
     <div class="service-num">03 / Serviço</div>
     <h3 class="service-title">Sites que<br/>Convertem</h3>
-    <p class="service-desc">Design moderno, rápido e focado em resultados. Do primeiro acesso até o botão de contato, cada detalhe é pensado para converter.</p>
+    <p class="service-desc">Design moderno, rápido e focado em resultados. Cada detalhe pensado para transformar visitantes em clientes.</p>
     <ul class="service-features">
       <li>Design exclusivo e moderno</li>
       <li>SEO otimizado</li>
@@ -557,177 +590,135 @@ footer {
   </div>
 </section>
 
+<!-- PRICING -->
 <section class="pricing-section" id="planos">
   <div class="pricing-header">
     <div class="pricing-header-left">
       <div class="section-eyebrow">Planos & Preços</div>
-      <h2 class="section-title-big">Trans-<br/>parência<br/>total.</h2>
+      <h2 class="section-title-big">Invista<br/>certo.</h2>
     </div>
     <div class="pricing-header-right">
-      <p class="pricing-note">Sem surpresas, sem taxa oculta. Escolha o plano ideal para o seu momento. Todos incluem suporte direto via WhatsApp com a nossa equipe.</p>
+      <div class="pricing-intro">
+        <p>Cada cliente começa com um <strong>setup inicial</strong> — onde montamos tudo do zero — e depois entra na <strong>mensalidade</strong> do plano escolhido.</p>
+        <p>Simples assim: você paga uma vez pra estruturar, e investe mensalmente pra crescer. Quanto mais você escala, mais retorno o sistema gera.</p>
+      </div>
     </div>
   </div>
 
-  <div class="pricing-group-label"><em>01</em> Tráfego Pago</div>
-  <div class="pricing-row">
-    <div class="price-card">
-      <div class="price-plan">Plano</div>
-      <div class="price-name">Start</div>
-      <p class="price-desc">Para quem está começando a investir em anúncios online.</p>
-      <div class="price-value"><sub>R$</sub>597</div>
-      <div class="price-period">/mês + verba de anúncios</div>
-      <ul class="price-features">
-        <li><span class="ck">✓</span> 1 plataforma (Meta ou Google)</li>
-        <li><span class="ck">✓</span> Até 3 campanhas ativas</li>
-        <li><span class="ck">✓</span> Relatório mensal</li>
-        <li><span class="ck">✓</span> Suporte WhatsApp</li>
-        <li class="off"><span class="ck">—</span> Remarketing avançado</li>
-        <li class="off"><span class="ck">—</span> Relatório semanal</li>
-      </ul>
-      <a href="https://wa.me/5500000000000?text=Quero%20o%20plano%20Start!" target="_blank" class="btn-price btn-price-outline">Contratar →</a>
+  <!-- SETUP BANNER -->
+  <div class="setup-banner">
+    <div class="setup-left">
+      <div class="setup-tag">Entrada obrigatória</div>
+      <div class="setup-text">
+        <h4>Setup Inicial</h4>
+        <p>Configuração completa: landing page, anúncios e automações do zero</p>
+      </div>
     </div>
-    <div class="price-card hot">
-      <div class="hot-badge">Mais popular</div>
-      <div class="price-plan">Plano</div>
-      <div class="price-name">Pro</div>
-      <p class="price-desc">Para negócios que querem escalar com estratégia completa.</p>
-      <div class="price-value"><sub>R$</sub>997</div>
-      <div class="price-period">/mês + verba de anúncios</div>
-      <ul class="price-features">
-        <li><span class="ck">✓</span> Meta + Google Ads</li>
-        <li><span class="ck">✓</span> Campanhas ilimitadas</li>
-        <li><span class="ck">✓</span> Relatório semanal</li>
-        <li><span class="ck">✓</span> Remarketing e lookalike</li>
-        <li><span class="ck">✓</span> Criação de criativos</li>
-        <li><span class="ck">✓</span> Suporte prioritário</li>
-      </ul>
-      <a href="https://wa.me/5500000000000?text=Quero%20o%20plano%20Pro!" target="_blank" class="btn-price btn-price-green">Contratar →</a>
-    </div>
-    <div class="price-card">
-      <div class="price-plan">Plano</div>
-      <div class="price-name">Scale</div>
-      <p class="price-desc">Para empresas prontas para dominar o digital com máxima performance.</p>
-      <div class="price-value"><sub>R$</sub>1.497</div>
-      <div class="price-period">/mês + verba de anúncios</div>
-      <ul class="price-features">
-        <li><span class="ck">✓</span> Todas as plataformas</li>
-        <li><span class="ck">✓</span> Funil de vendas completo</li>
-        <li><span class="ck">✓</span> Relatório diário</li>
-        <li><span class="ck">✓</span> Análise de concorrentes</li>
-        <li><span class="ck">✓</span> Gestor dedicado</li>
-        <li><span class="ck">✓</span> Reunião quinzenal</li>
-      </ul>
-      <a href="https://wa.me/5500000000000?text=Quero%20o%20plano%20Scale!" target="_blank" class="btn-price btn-price-outline">Contratar →</a>
-    </div>
+    <div class="setup-price">R$500 <span>– R$1.500</span></div>
   </div>
 
-  <div class="pricing-group-label"><em>02</em> Agente de IA</div>
-  <div class="pricing-row">
-    <div class="price-card">
-      <div class="price-plan">Plano</div>
-      <div class="price-name">Basic</div>
-      <p class="price-desc">Automatize seu primeiro atendimento e pare de perder leads.</p>
-      <div class="price-value"><sub>R$</sub>397</div>
-      <div class="price-period">/mês</div>
-      <ul class="price-features">
-        <li><span class="ck">✓</span> Agente no WhatsApp</li>
-        <li><span class="ck">✓</span> 500 conversas/mês</li>
-        <li><span class="ck">✓</span> Respostas automáticas</li>
-        <li><span class="ck">✓</span> FAQ inteligente</li>
-        <li class="off"><span class="ck">—</span> Integração CRM</li>
-        <li class="off"><span class="ck">—</span> Múltiplos canais</li>
+  <!-- 3 PLANS -->
+  <div class="plans-grid">
+
+    <!-- BÁSICO -->
+    <div class="plan-card">
+      <div class="plan-name">Básico</div>
+      <div class="plan-tagline">Para começar e validar</div>
+      <div class="plan-price-label">Mensalidade</div>
+      <div class="plan-price-row">
+        <div class="plan-price"><sub>R$</sub>800</div>
+      </div>
+      <div class="plan-price-range">até R$1.200/mês</div>
+      <div class="plan-setup-line">
+        <span>Setup de entrada</span>
+        <span>R$500</span>
+      </div>
+      <ul class="plan-features">
+        <li><span class="ck">✦</span> Gestão de tráfego pago</li>
+        <li><span class="ck">✦</span> 1 plataforma (Meta ou Google)</li>
+        <li><span class="ck">✦</span> Ajustes e otimizações mensais</li>
+        <li><span class="ck">✦</span> Relatório mensal</li>
+        <li><span class="ck">✦</span> Suporte via WhatsApp</li>
+        <li class="off"><span class="ck">—</span> Automação com IA</li>
+        <li class="off"><span class="ck">—</span> Estratégia de escala</li>
       </ul>
-      <a href="https://wa.me/5500000000000?text=Quero%20o%20plano%20Basic%20IA!" target="_blank" class="btn-price btn-price-outline">Contratar →</a>
+      <a href="https://wa.me/5500000000000?text=Quero%20o%20plano%20Básico!" target="_blank" class="btn-plan btn-plan-outline">Contratar →</a>
     </div>
-    <div class="price-card hot">
-      <div class="hot-badge">Mais popular</div>
-      <div class="price-plan">Plano</div>
-      <div class="price-name">Business</div>
-      <p class="price-desc">IA completa para qualificar leads e fechar mais vendas no automático.</p>
-      <div class="price-value"><sub>R$</sub>697</div>
-      <div class="price-period">/mês</div>
-      <ul class="price-features">
-        <li><span class="ck">✓</span> WhatsApp + Instagram</li>
-        <li><span class="ck">✓</span> Conversas ilimitadas</li>
-        <li><span class="ck">✓</span> Qualificação de leads</li>
-        <li><span class="ck">✓</span> Integração com CRM</li>
-        <li><span class="ck">✓</span> Dashboard de métricas</li>
-        <li><span class="ck">✓</span> Personalidade da marca</li>
+
+    <!-- PROFISSIONAL -->
+    <div class="plan-card featured">
+      <div class="plan-badge">Recomendado</div>
+      <div class="plan-name">Profissional</div>
+      <div class="plan-tagline">O principal — onde está o dinheiro</div>
+      <div class="plan-price-label">Mensalidade</div>
+      <div class="plan-price-row">
+        <div class="plan-price"><sub>R$</sub>1.500</div>
+      </div>
+      <div class="plan-price-range">até R$2.500/mês</div>
+      <div class="plan-setup-line">
+        <span>Setup de entrada</span>
+        <span>R$800 – R$1.000</span>
+      </div>
+      <ul class="plan-features">
+        <li><span class="ck">✦</span> Tráfego pago (Meta + Google)</li>
+        <li><span class="ck">✦</span> Automação com IA no WhatsApp</li>
+        <li><span class="ck">✦</span> Otimização contínua de campanhas</li>
+        <li><span class="ck">✦</span> Relatório semanal detalhado</li>
+        <li><span class="ck">✦</span> Suporte prioritário</li>
+        <li><span class="ck">✦</span> Criação de criativos</li>
+        <li><span class="ck">✦</span> Remarketing e lookalike</li>
       </ul>
-      <a href="https://wa.me/5500000000000?text=Quero%20o%20plano%20Business%20IA!" target="_blank" class="btn-price btn-price-green">Contratar →</a>
+      <a href="https://wa.me/5500000000000?text=Quero%20o%20plano%20Profissional!" target="_blank" class="btn-plan btn-plan-gold">Contratar →</a>
     </div>
-    <div class="price-card">
-      <div class="price-plan">Plano</div>
-      <div class="price-name">Enterprise</div>
-      <p class="price-desc">Solução personalizada para operações de alto volume.</p>
-      <div class="price-value"><sub>R$</sub>997</div>
-      <div class="price-period">/mês</div>
-      <ul class="price-features">
-        <li><span class="ck">✓</span> Todos os canais digitais</li>
-        <li><span class="ck">✓</span> IA 100% personalizada</li>
-        <li><span class="ck">✓</span> Múltiplos agentes</li>
-        <li><span class="ck">✓</span> API personalizada</li>
-        <li><span class="ck">✓</span> Onboarding dedicado</li>
-        <li><span class="ck">✓</span> SLA garantido</li>
+
+    <!-- PREMIUM -->
+    <div class="plan-card">
+      <div class="plan-name">Premium</div>
+      <div class="plan-tagline">Para quem quer dominar</div>
+      <div class="plan-price-label">Mensalidade</div>
+      <div class="plan-price-row">
+        <div class="plan-price"><sub>R$</sub>3.000</div>
+      </div>
+      <div class="plan-price-range">e acima / mês</div>
+      <div class="plan-setup-line">
+        <span>Setup de entrada</span>
+        <span>R$1.000 – R$1.500</span>
+      </div>
+      <ul class="plan-features">
+        <li><span class="ck">✦</span> Tudo do plano Profissional</li>
+        <li><span class="ck">✦</span> Estratégia completa de escala</li>
+        <li><span class="ck">✦</span> Acompanhamento próximo semanal</li>
+        <li><span class="ck">✦</span> Análise de concorrentes</li>
+        <li><span class="ck">✦</span> Gestor dedicado exclusivo</li>
+        <li><span class="ck">✦</span> Funil de vendas completo</li>
+        <li><span class="ck">✦</span> Relatório diário</li>
       </ul>
-      <a href="https://wa.me/5500000000000?text=Quero%20o%20plano%20Enterprise%20IA!" target="_blank" class="btn-price btn-price-outline">Contratar →</a>
+      <a href="https://wa.me/5500000000000?text=Quero%20o%20plano%20Premium!" target="_blank" class="btn-plan btn-plan-outline">Contratar →</a>
     </div>
+
   </div>
 
-  <div class="pricing-group-label"><em>03</em> Sites Profissionais</div>
-  <div class="pricing-row">
-    <div class="price-card">
-      <div class="price-plan">Produto</div>
-      <div class="price-name">Landing Page</div>
-      <p class="price-desc">Uma página poderosa para converter visitantes em clientes.</p>
-      <div class="price-value"><sub>R$</sub>997</div>
-      <div class="price-period">pagamento único</div>
-      <ul class="price-features">
-        <li><span class="ck">✓</span> Design exclusivo</li>
-        <li><span class="ck">✓</span> 1 página otimizada</li>
-        <li><span class="ck">✓</span> Botão WhatsApp</li>
-        <li><span class="ck">✓</span> SEO básico</li>
-        <li><span class="ck">✓</span> Entrega em 7 dias</li>
-        <li class="off"><span class="ck">—</span> Blog integrado</li>
-      </ul>
-      <a href="https://wa.me/5500000000000?text=Quero%20uma%20Landing%20Page!" target="_blank" class="btn-price btn-price-outline">Contratar →</a>
-    </div>
-    <div class="price-card hot">
-      <div class="hot-badge">Mais popular</div>
-      <div class="price-plan">Produto</div>
-      <div class="price-name">Site Institucional</div>
-      <p class="price-desc">Site completo para posicionar sua empresa com autoridade.</p>
-      <div class="price-value"><sub>R$</sub>1.997</div>
-      <div class="price-period">pagamento único</div>
-      <ul class="price-features">
-        <li><span class="ck">✓</span> Até 6 páginas</li>
-        <li><span class="ck">✓</span> Design premium</li>
-        <li><span class="ck">✓</span> SEO completo</li>
-        <li><span class="ck">✓</span> Blog integrado</li>
-        <li><span class="ck">✓</span> Integração WhatsApp</li>
-        <li><span class="ck">✓</span> Entrega em 15 dias</li>
-      </ul>
-      <a href="https://wa.me/5500000000000?text=Quero%20um%20Site%20Institucional!" target="_blank" class="btn-price btn-price-green">Contratar →</a>
-    </div>
-    <div class="price-card">
-      <div class="price-plan">Produto</div>
-      <div class="price-name">E-commerce</div>
-      <p class="price-desc">Loja online completa para vender 24h por dia, 7 dias por semana.</p>
-      <div class="price-value"><sub>R$</sub>2.997</div>
-      <div class="price-period">pagamento único</div>
-      <ul class="price-features">
-        <li><span class="ck">✓</span> Loja virtual completa</li>
-        <li><span class="ck">✓</span> Gateway de pagamento</li>
-        <li><span class="ck">✓</span> Gestão de produtos</li>
-        <li><span class="ck">✓</span> Painel administrativo</li>
-        <li><span class="ck">✓</span> SEO avançado</li>
-        <li><span class="ck">✓</span> Treinamento incluso</li>
-      </ul>
-      <a href="https://wa.me/5500000000000?text=Quero%20um%20E-commerce!" target="_blank" class="btn-price btn-price-outline">Contratar →</a>
-    </div>
+  <!-- RESULT ROW -->
+  <div class="result-row">
+    <div class="result-tag">Fase avançada</div>
+    <p class="result-text">Depois de consolidado, adicionamos <strong>taxa por resultado</strong>: R$10–30 por lead gerado ou 10–20% sobre vendas. Aqui é onde você começa a ganhar de verdade.</p>
+    <div class="result-values">R$10–30 / lead &nbsp;·&nbsp; 10–20% vendas</div>
   </div>
+
+  <!-- VISION BOX -->
+  <div class="vision-box">
+    <div>
+      <div class="vision-label">Visão real</div>
+      <div class="vision-stat">R$7.500<span>/mês</span></div>
+      <div class="vision-sub">com apenas 5 clientes no plano Profissional</div>
+    </div>
+    <div class="vision-divider"></div>
+    <p class="vision-text">Começa com <strong>2 a 3 clientes</strong> para aprender, construir prova social e subir o preço. Depois escala com consistência. O sistema trabalha por você.</p>
+  </div>
+
 </section>
 
+<!-- PROCESS -->
 <section class="process-section" id="processo">
   <div class="process-header">
     <div class="process-header-left">
@@ -762,9 +753,10 @@ footer {
   </div>
 </section>
 
+<!-- CTA -->
 <section class="cta-section">
   <div class="cta-left">
-    <h2>Pronto<br/>para<br/><span class="green">crescer?</span></h2>
+    <h2>Pronto<br/>para<br/><span class="gold">crescer?</span></h2>
     <p>Fale agora com nossa equipe. Sem enrolação, sem pressão. Vamos entender seu negócio e montar a melhor estratégia pra você.</p>
     <a href="https://wa.me/5500000000000?text=Olá!%20Quero%20crescer%20meu%20negócio." target="_blank" class="btn-primary">Falar no WhatsApp agora</a>
   </div>
@@ -776,9 +768,19 @@ footer {
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
   <div class="foot-col">
-    <div class="foot-logo">Connecta<em>Fy</em></div>
+    <div class="foot-logo-wrap">
+      <svg viewBox="0 0 180 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8 18 C8 10 13 5 20 5 C25 5 29 8 31 12" stroke="#c9a84c" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        <path d="M8 18 C8 26 13 31 20 31 C25 31 29 28 31 24" stroke="#c9a84c" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        <circle cx="31" cy="12" r="2" fill="#c9a84c"/>
+        <circle cx="31" cy="24" r="2" fill="#c9a84c"/>
+        <text x="42" y="25" font-family="'Barlow Condensed', sans-serif" font-weight="900" font-size="22" letter-spacing="1" fill="#f0ede6" text-anchor="start">CONNECTA</text>
+        <text x="153" y="25" font-family="'Barlow Condensed', sans-serif" font-weight="900" font-size="22" letter-spacing="1" fill="#c9a84c" text-anchor="start">FY</text>
+      </svg>
+    </div>
     <p class="foot-tagline">Tráfego pago, IA e sites que transformam negócios.</p>
     <p class="foot-copy">© 2025 ConnectaFy. Todos os direitos reservados.</p>
   </div>
