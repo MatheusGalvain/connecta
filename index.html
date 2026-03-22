@@ -638,28 +638,28 @@ footer { display:grid; grid-template-columns:1fr 1fr 1fr; border-top:1px solid v
   </div>
   <div class="faq-list">
     <div class="faq-item open">
-      <div role="button" class="faq-q" onclick="toggleFaq(this)">
+      <div role="button" class="faq-q">
         <span class="faq-q-text">Funciona para qualquer negócio?</span>
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a"><strong>Sim.</strong> Adaptamos a estratégia para o seu nicho, público e região. Já aplicamos em clínicas, imobiliárias, restaurantes, e-commerces e muito mais.</div>
     </div>
     <div class="faq-item">
-      <div role="button" class="faq-q" onclick="toggleFaq(this)">
+      <div role="button" class="faq-q">
         <span class="faq-q-text">Preciso entender de tecnologia?</span>
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a"><strong>Não.</strong> Nós cuidamos de tudo — configuração, anúncios, IA e relatórios. Você só precisa fechar os negócios que chegarem.</div>
     </div>
     <div class="faq-item">
-      <div role="button" class="faq-q" onclick="toggleFaq(this)">
+      <div role="button" class="faq-q">
         <span class="faq-q-text">Em quanto tempo vejo resultado?</span>
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-a">Os primeiros contatos podem chegar <strong>já nos primeiros dias</strong> de campanha ativa. O crescimento se consolida nas primeiras semanas.</div>
     </div>
     <div class="faq-item">
-      <div role="button" class="faq-q" onclick="toggleFaq(this)">
+      <div role="button" class="faq-q">
         <span class="faq-q-text">Qual o investimento necessário?</span>
         <span class="faq-icon">+</span>
       </div>
@@ -832,6 +832,25 @@ function closeMobileMenu() {
   document.body.style.overflow = '';
 }
 mobileMenu.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', closeMobileMenu));
+</script>
+
+<script>
+(function() {
+  var btns = document.querySelectorAll('.faq-q');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var item = btn.parentElement;
+      var isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(function(i) {
+        i.classList.remove('open');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+      }
+    });
+  });
+})();
 </script>
 </body>
 </html>
