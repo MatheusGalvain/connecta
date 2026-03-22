@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Guia de Agente de IA — ConnectaFy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700;800;900&family=Barlow:wght@300;400;500&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg: #080808;
+  --white: #f0ede6;
+  --gold: #c9a84c;
+  --gold-light: #e8c96a;
+  --gold-dim: #7a6230;
+  --muted: #555550;
+  --border: #1c1c1a;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--white); font-family: 'Barlow', sans-serif; font-weight: 300; overflow-x: hidden; }
+
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px; height: 64px;
+  border-bottom: 1px solid var(--border);
+  background: rgba(8,8,8,0.94); backdrop-filter: blur(20px);
+}
+.nav-logo { display: flex; align-items: center; text-decoration: none; }
+.nav-logo svg { height: 30px; width: auto; }
+.nav-back { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 8px; transition: color 0.2s; }
+.nav-back:hover { color: var(--white); }
+.nav-back::before { content: '←'; }
+.btn-nav { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 0.78rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--bg); background: var(--gold); padding: 10px 26px; text-decoration: none; transition: opacity 0.2s; }
+.btn-nav:hover { opacity: 0.85; }
+
+.cover { min-height: 560px; display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--border); padding-top: 64px; }
+.cover-left { padding: 80px 60px 72px 48px; border-right: 1px solid var(--border); display: flex; flex-direction: column; justify-content: flex-end; }
+.guide-tag { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
+.guide-tag::before { content: ''; display: block; width: 28px; height: 1px; background: var(--gold); }
+.cover-left h1 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: clamp(4rem, 8vw, 8rem); line-height: 0.88; text-transform: uppercase; letter-spacing: -0.01em; }
+.cover-left h1 .outline { -webkit-text-stroke: 1.5px var(--white); color: transparent; }
+.cover-left h1 .gold { color: var(--gold); }
+.cover-sub { font-size: 1rem; font-weight: 300; color: var(--muted); line-height: 1.8; margin-top: 32px; max-width: 380px; }
+.cover-right { padding: 80px 48px 72px; display: flex; flex-direction: column; justify-content: flex-end; gap: 32px; }
+.cover-meta { display: flex; flex-direction: column; gap: 24px; }
+.meta-item { border-top: 1px solid var(--border); padding-top: 20px; }
+.meta-label { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+.meta-value { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.6rem; text-transform: uppercase; line-height: 1; }
+.meta-value.gold { color: var(--gold); }
+
+.toc-section { display: grid; grid-template-columns: 1fr 2fr; border-bottom: 1px solid var(--border); }
+.toc-left { padding: 56px 48px; border-right: 1px solid var(--border); }
+.toc-label { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 32px; display: flex; align-items: center; gap: 12px; }
+.toc-label::before { content: ''; display: block; width: 28px; height: 1px; background: var(--gold); }
+.toc-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 3rem; text-transform: uppercase; line-height: 0.92; }
+.toc-right { padding: 56px 48px; }
+.toc-list { list-style: none; display: flex; flex-direction: column; }
+.toc-item { display: flex; align-items: center; gap: 20px; padding: 18px 0; border-bottom: 1px solid var(--border); text-decoration: none; color: var(--white); transition: color 0.2s; }
+.toc-item:last-child { border-bottom: none; }
+.toc-item:hover .toc-item-title { color: var(--gold); }
+.toc-num { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 0.75rem; color: var(--gold); width: 28px; flex-shrink: 0; }
+.toc-item-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.04em; flex: 1; transition: color 0.2s; }
+.toc-item-desc { font-size: 0.82rem; font-weight: 300; color: var(--muted); }
+.toc-arrow { color: var(--muted); font-size: 0.8rem; }
+
+.chapter { border-bottom: 1px solid var(--border); }
+.chapter-header { display: grid; grid-template-columns: 80px 1fr; border-bottom: 1px solid var(--border); background: #0a0a08; }
+.chapter-num-col { display: flex; align-items: center; justify-content: center; border-right: 1px solid var(--border); padding: 32px 0; }
+.chapter-num { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 2.5rem; -webkit-text-stroke: 1px var(--gold-dim); color: transparent; line-height: 1; }
+.chapter-header-content { padding: 32px 48px; display: flex; align-items: center; justify-content: space-between; }
+.chapter-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 2.2rem; text-transform: uppercase; line-height: 1; }
+.chapter-badge { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--bg); background: var(--gold); padding: 4px 12px; }
+.chapter-body { display: grid; grid-template-columns: 1fr 1fr; }
+.chapter-text { padding: 56px 48px; border-right: 1px solid var(--border); }
+.chapter-text p { font-size: 1rem; font-weight: 300; line-height: 1.9; color: var(--muted); margin-bottom: 20px; }
+.chapter-text p strong { color: var(--white); font-weight: 500; }
+.chapter-text p em { font-family: 'Lora', serif; font-style: italic; color: var(--gold); }
+.chapter-visual { padding: 56px 48px; display: flex; flex-direction: column; gap: 20px; }
+.chapter-body-full { padding: 56px 48px; }
+.chapter-body-full p { font-size: 1rem; font-weight: 300; line-height: 1.9; color: var(--muted); margin-bottom: 20px; max-width: 680px; }
+.chapter-body-full p strong { color: var(--white); font-weight: 500; }
+
+.analogy-box { background: #0d0d0b; border: 1px solid var(--border); border-left: 3px solid var(--gold); padding: 28px 32px; margin: 24px 0; }
+.analogy-box .analogy-label { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+.analogy-box p { font-family: 'Lora', serif; font-style: italic; font-size: 0.95rem; color: var(--white); line-height: 1.7; }
+
+.info-card { background: #0d0d0b; border: 1px solid var(--border); padding: 28px; }
+.info-card-icon { font-size: 1.8rem; margin-bottom: 16px; }
+.info-card h4 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.2rem; text-transform: uppercase; margin-bottom: 10px; }
+.info-card p { font-size: 0.88rem; font-weight: 300; color: var(--muted); line-height: 1.7; }
+
+.step-list { list-style: none; display: flex; flex-direction: column; gap: 0; }
+.step-list-item { display: flex; gap: 20px; padding: 20px 0; border-bottom: 1px solid var(--border); }
+.step-list-item:last-child { border-bottom: none; }
+.step-list-num { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.6rem; color: var(--gold); line-height: 1; flex-shrink: 0; width: 32px; }
+.step-list-content h5 { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1rem; text-transform: uppercase; margin-bottom: 6px; }
+.step-list-content p { font-size: 0.85rem; font-weight: 300; color: var(--muted); line-height: 1.6; }
+
+.comparison { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.comp-col { padding: 24px; border: 1px solid var(--border); }
+.comp-col.bad { border-color: #3a1a1a; background: #0e0808; }
+.comp-col.good { border-color: var(--gold-dim); background: #0d0c09; }
+.comp-label { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 16px; }
+.comp-col.bad .comp-label { color: #c05050; }
+.comp-col.good .comp-label { color: var(--gold); }
+.comp-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.comp-list li { font-size: 0.85rem; font-weight: 300; color: var(--muted); display: flex; gap: 8px; line-height: 1.4; }
+.comp-col.bad .comp-list li::before { content: '✕'; color: #c05050; flex-shrink: 0; font-size: 0.75rem; margin-top: 2px; }
+.comp-col.good .comp-list li::before { content: '✦'; color: var(--gold); flex-shrink: 0; font-size: 0.75rem; margin-top: 2px; }
+
+.highlight-stat { padding: 40px; background: #0d0c09; border: 1px solid var(--gold-dim); text-align: center; }
+.highlight-stat .big-num { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 5rem; color: var(--gold); line-height: 1; margin-bottom: 8px; }
+.highlight-stat .big-label { font-size: 0.85rem; font-weight: 300; color: var(--muted); line-height: 1.6; }
+
+.cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); margin-top: 40px; }
+.grid-card { background: var(--bg); padding: 36px 32px; }
+.grid-card-num { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 0.7rem; color: var(--gold); letter-spacing: 0.18em; margin-bottom: 20px; }
+.grid-card h4 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.4rem; text-transform: uppercase; margin-bottom: 12px; }
+.grid-card p { font-size: 0.85rem; font-weight: 300; color: var(--muted); line-height: 1.7; }
+
+/* Chat mockup */
+.chat-mock { background: #0d0d0b; border: 1px solid var(--border); padding: 24px; display: flex; flex-direction: column; gap: 12px; }
+.chat-mock-header { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); padding-bottom: 12px; border-bottom: 1px solid var(--border); margin-bottom: 4px; }
+.msg { max-width: 80%; padding: 10px 14px; font-size: 0.85rem; font-weight: 300; line-height: 1.5; border-radius: 2px; }
+.msg.client { background: #1a1a18; color: var(--muted); align-self: flex-start; }
+.msg.bot { background: #1a1800; border: 1px solid var(--gold-dim); color: var(--white); align-self: flex-end; }
+.msg-label { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px; }
+.msg.client .msg-label { color: var(--muted); }
+.msg.bot .msg-label { color: var(--gold); text-align: right; }
+
+.guide-cta { padding: 80px 48px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 32px; }
+.guide-cta-text h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: clamp(2.5rem, 5vw, 4.5rem); text-transform: uppercase; line-height: 0.92; margin-bottom: 16px; }
+.guide-cta-text h3 .gold { color: var(--gold); }
+.guide-cta-text p { font-size: 0.95rem; font-weight: 300; color: var(--muted); line-height: 1.7; max-width: 420px; }
+.btn-cta { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 0.9rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--bg); background: var(--gold); padding: 18px 48px; text-decoration: none; transition: opacity 0.2s, transform 0.15s; white-space: nowrap; }
+.btn-cta:hover { opacity: 0.85; transform: translateY(-2px); }
+
+.guide-footer { border-top: 1px solid var(--border); padding: 24px 48px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+.guide-footer-logo { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.04em; }
+.guide-footer-logo em { font-style: normal; color: var(--gold); }
+.guide-footer-links { display: flex; gap: 28px; }
+.guide-footer-links a { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+.guide-footer-links a:hover { color: var(--white); }
+
+@media (max-width: 860px) {
+  nav { padding: 0 24px; }
+  .cover { grid-template-columns: 1fr; }
+  .cover-left { border-right: none; padding: 100px 24px 48px; }
+  .cover-right { padding: 48px 24px; }
+  .toc-section { grid-template-columns: 1fr; }
+  .toc-left { border-right: none; border-bottom: 1px solid var(--border); }
+  .chapter-body { grid-template-columns: 1fr; }
+  .chapter-text { border-right: none; }
+  .chapter-header { grid-template-columns: 56px 1fr; }
+  .chapter-header-content { padding: 24px; }
+  .cards-grid { grid-template-columns: 1fr; }
+  .comparison { grid-template-columns: 1fr; }
+  .guide-cta { padding: 56px 24px; }
+  .guide-footer { padding: 24px; }
+  .toc-right, .toc-left, .chapter-visual, .chapter-text, .chapter-body-full { padding: 40px 24px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg viewBox="0 0 180 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8 18 C8 10 13 5 20 5 C25 5 29 8 31 12" stroke="#c9a84c" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <path d="M8 18 C8 26 13 31 20 31 C25 31 29 28 31 24" stroke="#c9a84c" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <circle cx="31" cy="12" r="2" fill="#c9a84c"/>
+      <circle cx="31" cy="24" r="2" fill="#c9a84c"/>
+      <text x="42" y="25" font-family="'Barlow Condensed', sans-serif" font-weight="900" font-size="22" letter-spacing="1" fill="#f0ede6">CONNECTA</text>
+      <text x="153" y="25" font-family="'Barlow Condensed', sans-serif" font-weight="900" font-size="22" letter-spacing="1" fill="#c9a84c">FY</text>
+    </svg>
+  </a>
+  <a href="index.html" class="nav-back">Voltar ao site</a>
+  <a href="https://wa.me/5500000000000?text=Quero%20saber%20mais%20sobre%20Agente%20de%20IA!" target="_blank" class="btn-nav">Quero este serviço</a>
+</nav>
+
+<section class="cover">
+  <div class="cover-left">
+    <div class="guide-tag">Guia completo · Serviço 02</div>
+    <h1>
+      <span class="outline">Agente</span><br/>
+      <span class="gold">de IA</span>
+    </h1>
+    <p class="cover-sub">Entenda como um robô inteligente pode atender seus clientes 24 horas por dia, qualificar leads e fechar vendas enquanto você dorme.</p>
+  </div>
+  <div class="cover-right">
+    <div class="cover-meta">
+      <div class="meta-item">
+        <div class="meta-label">Nível do guia</div>
+        <div class="meta-value">Totalmente leigo</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Tempo de leitura</div>
+        <div class="meta-value">~7 minutos</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Canal principal</div>
+        <div class="meta-value gold">WhatsApp · Instagram</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="toc-section">
+  <div class="toc-left">
+    <div class="toc-label">Índice</div>
+    <div class="toc-title">O que<br/>você vai<br/>aprender</div>
+  </div>
+  <div class="toc-right">
+    <ul class="toc-list">
+      <a href="#cap1" class="toc-item"><span class="toc-num">01</span><span class="toc-item-title">O que é um agente de IA?</span><span class="toc-item-desc">Robô ou atendente virtual?</span><span class="toc-arrow">→</span></a>
+      <a href="#cap2" class="toc-item"><span class="toc-num">02</span><span class="toc-item-title">Como ele funciona no dia a dia?</span><span class="toc-item-desc">Da mensagem à venda</span><span class="toc-arrow">→</span></a>
+      <a href="#cap3" class="toc-item"><span class="toc-num">03</span><span class="toc-item-title">O que o agente consegue fazer?</span><span class="toc-item-desc">Capacidades e limites</span><span class="toc-arrow">→</span></a>
+      <a href="#cap4" class="toc-item"><span class="toc-num">04</span><span class="toc-item-title">Por que isso importa pro seu negócio?</span><span class="toc-item-desc">Impacto real em receita</span><span class="toc-arrow">→</span></a>
+      <a href="#cap5" class="toc-item"><span class="toc-num">05</span><span class="toc-item-title">Como a ConnectaFy configura o seu?</span><span class="toc-item-desc">Nosso processo</span><span class="toc-arrow">→</span></a>
+    </ul>
+  </div>
+</div>
+
+<!-- CAP 1 -->
+<div class="chapter" id="cap1">
+  <div class="chapter-header">
+    <div class="chapter-num-col"><div class="chapter-num">01</div></div>
+    <div class="chapter-header-content">
+      <div class="chapter-title">O que é um agente de IA?</div>
+      <div class="chapter-badge">Conceito base</div>
+    </div>
+  </div>
+  <div class="chapter-body">
+    <div class="chapter-text">
+      <p>Um agente de IA é um programa inteligente que <strong>conversa com seus clientes de forma automática</strong>, entendendo o que eles escrevem e respondendo de maneira natural — como se fosse um atendente humano.</p>
+      <p>Ele aprende sobre o seu negócio: seus produtos, seus preços, suas políticas. A partir disso, <em>responde dúvidas, qualifica o interesse do cliente e encaminha para a venda</em> sem você precisar estar presente.</p>
+      <p>Diferente de um chatbot antigo (aqueles de "aperte 1 para…"), o agente de IA <strong>entende frases livres e contexto</strong>. O cliente escreve como quiser e o agente interpreta corretamente.</p>
+      <div class="analogy-box">
+        <div class="analogy-label">Analogia simples</div>
+        <p>"É como contratar um atendente que nunca dorme, nunca fica de mau humor, conhece cada detalhe do seu negócio e responde 500 clientes ao mesmo tempo."</p>
+      </div>
+    </div>
+    <div class="chapter-visual">
+      <div class="info-card">
+        <div class="info-card-icon">🤖</div>
+        <h4>Chatbot antigo</h4>
+        <p>Menus fixos, respostas engessadas. O cliente precisa seguir um roteiro. Qualquer frase fora do padrão — o bot trava.</p>
+      </div>
+      <div class="info-card" style="border-color: var(--gold-dim); background: #0d0c09;">
+        <div class="info-card-icon">✨</div>
+        <h4>Agente de IA (atual)</h4>
+        <p>Entende linguagem natural. O cliente escreve como quiser. O agente interpreta, responde com contexto e conduz a conversa para a venda.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CAP 2 -->
+<div class="chapter" id="cap2">
+  <div class="chapter-header">
+    <div class="chapter-num-col"><div class="chapter-num">02</div></div>
+    <div class="chapter-header-content">
+      <div class="chapter-title">Como funciona no dia a dia?</div>
+      <div class="chapter-badge">Na prática</div>
+    </div>
+  </div>
+  <div class="chapter-body">
+    <div class="chapter-text">
+      <p>Imagine que é domingo à noite. Um cliente viu seu anúncio no Instagram e mandou mensagem no WhatsApp querendo saber o preço e como funciona seu serviço.</p>
+      <p><strong>Sem agente de IA:</strong> você só vai ver essa mensagem na segunda de manhã. O cliente já pesquisou o concorrente e provavelmente fechou com outro.</p>
+      <p><strong>Com agente de IA:</strong> em segundos, o cliente recebe uma resposta completa, com todas as informações que precisa, e um convite para agendar ou fechar. <em>A venda acontece enquanto você dormia.</em></p>
+    </div>
+    <div class="chapter-visual">
+      <div class="chat-mock">
+        <div class="chat-mock-header">Exemplo real de conversa — 23h47</div>
+        <div class="msg client"><div class="msg-label">Cliente</div>Oi, quanto custa o serviço de vocês?</div>
+        <div class="msg bot"><div class="msg-label">Agente ConnectaFy</div>Olá! Tudo bem? 😊 Nossos planos começam em R$800/mês. Me conta um pouco sobre seu negócio — assim consigo te indicar o melhor plano!</div>
+        <div class="msg client"><div class="msg-label">Cliente</div>Tenho uma clínica odontológica aqui em Erechim</div>
+        <div class="msg bot"><div class="msg-label">Agente ConnectaFy</div>Perfeito! Para clínicas odontológicas o plano Profissional funciona muito bem — inclui tráfego pago + automação. Posso agendar uma conversa rápida com nossa equipe amanhã?</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CAP 3 -->
+<div class="chapter" id="cap3">
+  <div class="chapter-header">
+    <div class="chapter-num-col"><div class="chapter-num">03</div></div>
+    <div class="chapter-header-content">
+      <div class="chapter-title">O que o agente consegue fazer?</div>
+      <div class="chapter-badge">Capacidades</div>
+    </div>
+  </div>
+  <div class="chapter-body-full">
+    <p>O agente não é mágica — ele é muito bom em algumas coisas e tem limites claros. Entender isso ajuda a usar o recurso da forma certa.</p>
+    <div class="cards-grid">
+      <div class="grid-card" style="border-bottom: 2px solid var(--gold);">
+        <div class="grid-card-num">Ele faz muito bem</div>
+        <h4>Responder perguntas</h4>
+        <p>Preços, horários, localização, como funciona, o que está incluso. Tudo que você ensinar a ele, ele sabe responder.</p>
+      </div>
+      <div class="grid-card" style="border-bottom: 2px solid var(--gold);">
+        <div class="grid-card-num">Ele faz muito bem</div>
+        <h4>Qualificar leads</h4>
+        <p>Faz perguntas estratégicas para entender se o cliente tem perfil. Filtra os curiosos dos clientes sérios antes de chegar até você.</p>
+      </div>
+      <div class="grid-card" style="border-bottom: 2px solid var(--gold);">
+        <div class="grid-card-num">Ele faz muito bem</div>
+        <h4>Agendar e direcionar</h4>
+        <p>Encaminha para o link de agendamento, para o site, ou para você quando a conversa está madura para fechar.</p>
+      </div>
+      <div class="grid-card">
+        <div class="grid-card-num">Limitação natural</div>
+        <h4>Negociações complexas</h4>
+        <p>Casos muito específicos ou negociações avançadas são transferidos para você. O agente sabe a hora de chamar o humano.</p>
+      </div>
+      <div class="grid-card">
+        <div class="grid-card-num">Limitação natural</div>
+        <h4>Decisões fora do roteiro</h4>
+        <p>Se o cliente pedir algo muito fora do comum, o agente não "inventa" — ele redireciona para você com contexto.</p>
+      </div>
+      <div class="grid-card" style="background: #0d0c09; border: 1px solid var(--gold-dim);">
+        <div class="grid-card-num">Resultado final</div>
+        <h4>Você só vê leads quentes</h4>
+        <p>Quando uma conversa chegar até você, o cliente já foi qualificado, já sabe o preço, e está pronto para decidir.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CAP 4 -->
+<div class="chapter" id="cap4">
+  <div class="chapter-header">
+    <div class="chapter-num-col"><div class="chapter-num">04</div></div>
+    <div class="chapter-header-content">
+      <div class="chapter-title">Por que isso importa pro negócio?</div>
+      <div class="chapter-badge">Impacto real</div>
+    </div>
+  </div>
+  <div class="chapter-body">
+    <div class="chapter-text">
+      <p>O problema da maioria dos negócios não é falta de interesse — é <strong>demora no atendimento.</strong> Estudos mostram que o cliente que recebe resposta em até 5 minutos tem <em>21 vezes mais chance de fechar</em> do que o que espera 30 minutos.</p>
+      <p>Com o agente ativo 24h, você para de perder vendas por causa de horário, fim de semana ou volume alto de mensagens. <strong>Todo lead é atendido na hora.</strong></p>
+      <p>O segundo grande ganho é a sua produtividade. Em vez de responder as mesmas perguntas 30 vezes por dia, você só entra nas conversas que já estão prontas para fechar.</p>
+    </div>
+    <div class="chapter-visual">
+      <div class="highlight-stat">
+        <div class="big-num">21x</div>
+        <div class="big-label">mais chance de fechar quando o cliente é respondido em menos de 5 minutos</div>
+      </div>
+      <div class="comparison">
+        <div class="comp-col bad">
+          <div class="comp-label">Sem agente</div>
+          <ul class="comp-list">
+            <li>Mensagens sem resposta à noite</li>
+            <li>Cliente vai pro concorrente</li>
+            <li>Você perde tempo repetindo info</li>
+            <li>Leads frios quando você responde</li>
+          </ul>
+        </div>
+        <div class="comp-col good">
+          <div class="comp-label">Com agente IA</div>
+          <ul class="comp-list">
+            <li>Atendimento imediato 24h</li>
+            <li>Lead mantido aquecido</li>
+            <li>Você só fala com quem quer comprar</li>
+            <li>Mais vendas com menos esforço</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CAP 5 -->
+<div class="chapter" id="cap5">
+  <div class="chapter-header">
+    <div class="chapter-num-col"><div class="chapter-num">05</div></div>
+    <div class="chapter-header-content">
+      <div class="chapter-title">Como a ConnectaFy configura o seu?</div>
+      <div class="chapter-badge">Nosso processo</div>
+    </div>
+  </div>
+  <div class="chapter-body">
+    <div class="chapter-text">
+      <p>Não existe agente genérico aqui. <strong>Cada agente é treinado com as informações do seu negócio específico</strong> — seu tom de voz, seus produtos, sua região, suas objeções mais comuns.</p>
+      <p>O processo todo leva entre 3 e 7 dias úteis. Depois de ativo, você acompanha tudo pelo painel e pode sugerir ajustes a qualquer momento.</p>
+    </div>
+    <div class="chapter-visual">
+      <ul class="step-list">
+        <li class="step-list-item">
+          <div class="step-list-num">1</div>
+          <div class="step-list-content"><h5>Briefing do negócio</h5><p>Você nos conta tudo sobre o que vende, como atende, seus preços e o perfil do seu cliente ideal.</p></div>
+        </li>
+        <li class="step-list-item">
+          <div class="step-list-num">2</div>
+          <div class="step-list-content"><h5>Configuramos a personalidade</h5><p>Definimos o tom do agente: formal, descontraído, técnico. Ele vai soar como a sua marca.</p></div>
+        </li>
+        <li class="step-list-item">
+          <div class="step-list-num">3</div>
+          <div class="step-list-content"><h5>Treinamos com seus dados</h5><p>Inserimos FAQ, fluxos de venda, respostas para objeções e instruções de quando transferir.</p></div>
+        </li>
+        <li class="step-list-item">
+          <div class="step-list-num">4</div>
+          <div class="step-list-content"><h5>Testamos e ativamos</h5><p>Fazemos testes com situações reais antes de ligar o agente de verdade. Você aprova tudo.</p></div>
+        </li>
+        <li class="step-list-item">
+          <div class="step-list-num">5</div>
+          <div class="step-list-content"><h5>Monitoramento contínuo</h5><p>Acompanhamos as conversas e ajustamos o agente mensalmente para melhorar os resultados.</p></div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="guide-cta">
+  <div class="guide-cta-text">
+    <h3>Seu negócio<br/>atendendo<br/><span class="gold">24 horas.</span></h3>
+    <p>Vamos configurar um agente de IA personalizado para o seu negócio. Fale com a nossa equipe agora.</p>
+  </div>
+  <a href="https://wa.me/5500000000000?text=Quero%20um%20Agente%20de%20IA%20para%20meu%20negócio!" target="_blank" class="btn-cta">Falar no WhatsApp →</a>
+</div>
+
+<div class="guide-footer">
+  <div class="guide-footer-logo">Connecta<em>Fy</em></div>
+  <div class="guide-footer-links">
+    <a href="index.html">Home</a>
+    <a href="trafego-pago.html">Tráfego Pago</a>
+    <a href="sites.html">Sites</a>
+  </div>
+</div>
+
+</body>
+</html>
