@@ -205,9 +205,10 @@ nav {
 
 /* ─── PLANOS ─── */
 .pricing-section { border-bottom:1px solid var(--border); }
-.pricing-header { display:grid; grid-template-columns:1fr 2fr; border-bottom:1px solid var(--border); }
-.pricing-header-left { padding:64px 48px; border-right:1px solid var(--border); }
-.pricing-header-right { padding:64px 48px; display:flex; align-items:center; }
+.pricing-header { display:block; border-bottom:1px solid var(--border); }
+.pricing-header-left { padding:64px 48px; }
+
+.pricing-intro { margin-top:20px; max-width:520px; }
 .pricing-intro p { font-size:0.95rem; font-weight:300; color:var(--muted); line-height:1.8; margin-bottom:16px; }
 .pricing-intro p strong { color:var(--white); font-weight:500; }
 .setup-banner { display:flex; align-items:center; justify-content:space-between; padding:28px 48px; background:#0d0d0b; border-bottom:1px solid var(--border); flex-wrap:wrap; gap:20px; }
@@ -677,8 +678,6 @@ footer { display:grid; grid-template-columns:1fr 1fr 1fr; border-top:1px solid v
     <div class="pricing-header-left">
       <div class="section-eyebrow">Planos & Preços</div>
       <h2 class="section-title-big">Invista<br/>certo.</h2>
-    </div>
-    <div class="pricing-header-right">
       <div class="pricing-intro">
         <p>Cada cliente começa com um <strong>setup inicial</strong> — onde montamos tudo do zero — e depois entra na <strong>mensalidade</strong> do plano escolhido.</p>
         <p>Simples: você paga uma vez para estruturar, e investe mensalmente para crescer.</p>
