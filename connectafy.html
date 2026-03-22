@@ -601,20 +601,32 @@ footer { display:grid; grid-template-columns:1fr 1fr 1fr; border-top:1px solid v
     </div>
   </div>
   <div class="faq-list">
-    <div class="faq-item">
-      <div class="faq-q">Funciona para qualquer negócio?</div>
+    <div class="faq-item open">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Funciona para qualquer negócio?
+        <span class="faq-icon">+</span>
+      </button>
       <div class="faq-a"><strong>Sim.</strong> Adaptamos a estratégia para o seu nicho, público e região. Já aplicamos em clínicas, imobiliárias, restaurantes, e-commerces e muito mais.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q">Preciso entender de tecnologia?</div>
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Preciso entender de tecnologia?
+        <span class="faq-icon">+</span>
+      </button>
       <div class="faq-a"><strong>Não.</strong> Nós cuidamos de tudo — configuração, anúncios, IA e relatórios. Você só precisa fechar os negócios que chegarem.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q">Em quanto tempo vejo resultado?</div>
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Em quanto tempo vejo resultado?
+        <span class="faq-icon">+</span>
+      </button>
       <div class="faq-a">Os primeiros contatos podem chegar <strong>já nos primeiros dias</strong> de campanha ativa. O crescimento se consolida nas primeiras semanas.</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q">Qual o investimento necessário?</div>
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Qual o investimento necessário?
+        <span class="faq-icon">+</span>
+      </button>
       <div class="faq-a">Nossos planos de gestão começam em <strong>R$800/mês</strong>. Além disso, há a verba de anúncios que vai direto para o Google ou Meta.</div>
     </div>
   </div>
@@ -764,6 +776,15 @@ footer { display:grid; grid-template-columns:1fr 1fr 1fr; border-top:1px solid v
 </footer>
 
 <script>
+function toggleFaq(btn) {
+  const item = btn.parentElement;
+  const isOpen = item.classList.contains('open');
+  // Close all
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  // Open clicked if it was closed
+  if (!isOpen) item.classList.add('open');
+}
+
 const hamburger = document.getElementById('hamburger');
 const mobileMenu = document.getElementById('mobileMenu');
 hamburger.addEventListener('click', () => {
