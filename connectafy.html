@@ -117,7 +117,7 @@ nav {
   display: flex; flex-direction: column; justify-content: flex-end;
   padding: 120px 48px 72px 60px; position: relative;
 }
-.hero-number { font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:clamp(8rem,14vw,14rem); line-height:1; -webkit-text-stroke:1px #222218; color:transparent; position:absolute; top:80px; right:24px; pointer-events:none; user-select:none; }
+.hero-number { font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:clamp(8rem,14vw,14rem); line-height:1; -webkit-text-stroke:2px #888880; color:transparent; position:absolute; top:80px; right:24px; pointer-events:none; user-select:none; }
 .hero-stats { display:flex; flex-direction:column; gap:32px; }
 .stat-item { border-top:1px solid var(--border); padding-top:24px; }
 .stat-num { font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:3.5rem; line-height:1; color:var(--white); }
@@ -140,7 +140,7 @@ nav {
 .how-steps { display:grid; grid-template-columns:repeat(3,1fr); }
 .how-step { padding:56px 48px; border-right:1px solid var(--border); position:relative; }
 .how-step:last-child { border-right:none; }
-.how-step-num { font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:5rem; line-height:1; -webkit-text-stroke:1px #282820; color:transparent; margin-bottom:24px; }
+.how-step-num { font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:5rem; line-height:1; -webkit-text-stroke:2px #888880; color:transparent; margin-bottom:24px; }
 .how-step-dot { width:12px; height:12px; background:var(--green-wa); border-radius:50%; margin-bottom:20px; }
 .how-step h3 { font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:1.8rem; text-transform:uppercase; line-height:1; margin-bottom:16px; }
 .how-step p { font-size:0.9rem; font-weight:300; color:var(--muted); line-height:1.7; }
@@ -172,7 +172,7 @@ nav {
 .benefit-card:nth-child(3), .benefit-card:nth-child(6) { border-right:none; }
 .benefit-card:nth-child(4), .benefit-card:nth-child(5), .benefit-card:nth-child(6) { border-bottom:none; }
 .benefit-card:hover { background:#0d0d0b; }
-.benefit-icon { font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:2rem; color:var(--gold); line-height:1; margin-bottom:20px; -webkit-text-stroke:1px var(--gold-dim); }
+.benefit-icon { font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:2rem; color:var(--gold); line-height:1; margin-bottom:20px; -webkit-text-stroke:1.5px var(--gold-light); }
 .benefit-card h4 { font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:1.5rem; text-transform:uppercase; line-height:1; margin-bottom:12px; }
 .benefit-card p { font-size:0.88rem; font-weight:300; color:var(--muted); line-height:1.7; }
 .benefits-cta { padding:40px 48px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:20px; }
@@ -320,14 +320,19 @@ footer { display:grid; grid-template-columns:1fr 1fr 1fr; border-top:1px solid v
   footer { grid-template-columns:1fr; }
   .foot-col { border-right:none; border-bottom:1px solid var(--border); padding:40px 24px; }
   .how-step, .plan-card { padding:48px 24px; }
+  .faq-header { grid-template-columns:1fr; }
+  .faq-header-left { border-right:none; border-bottom:1px solid var(--border); padding:40px 24px; }
+  .faq-header-right { padding:24px 24px 32px; }
+  .faq-q { padding:24px; font-size:1.2rem; }
+  .faq-item.open .faq-a { padding:0 24px 28px; }
 }
 
 /* ─── FAQ ACCORDION ─── */
 .faq-section { border-bottom: 1px solid var(--border); }
-.faq-header { display: grid; grid-template-columns: 1fr 2fr; border-bottom: 1px solid var(--border); }
-.faq-header-left { padding: 64px 48px; border-right: 1px solid var(--border); }
-.faq-header-right { padding: 64px 48px; display: flex; align-items: center; }
-.faq-header-right p { font-size: 0.95rem; font-weight: 300; color: var(--muted); line-height: 1.8; max-width: 420px; }
+.faq-header { display: block; border-bottom: 1px solid var(--border); }
+.faq-header-left { padding: 64px 48px; }
+
+.faq-header-sub { font-size: 0.95rem; font-weight: 300; color: var(--muted); line-height: 1.8; max-width: 520px; margin-top: 20px; }
 .faq-list { list-style: none; }
 .faq-item { border-bottom: 1px solid var(--border); }
 .faq-item:last-child { border-bottom: none; }
@@ -631,9 +636,7 @@ footer { display:grid; grid-template-columns:1fr 1fr 1fr; border-top:1px solid v
     <div class="faq-header-left">
       <div class="section-eyebrow">Dúvidas comuns</div>
       <h2 class="section-title-big">Perguntas<br/>que todo<br/>mundo faz</h2>
-    </div>
-    <div class="faq-header-right">
-      <p>Respostas diretas para as dúvidas mais comuns antes de começar. Sem enrolação.</p>
+      <p class="faq-header-sub">Respostas diretas para as dúvidas mais comuns antes de começar. Sem enrolação.</p>
     </div>
   </div>
   <div class="faq-list">
